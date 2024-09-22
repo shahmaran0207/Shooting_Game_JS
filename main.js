@@ -10,3 +10,10 @@ canvas.width=400;
 canvas.height=700;
 
 document.body.appendChild(canvas);
+
+let backgroundImage, spaceshipImage, bulletImage, enemyImage, gameOverImage;
+
+function loadImage(){
+    backgroundImage=new Image();
+    backgroundImage.src="src/images/background.gif"
+}
