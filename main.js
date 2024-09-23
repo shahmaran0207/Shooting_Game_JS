@@ -15,5 +15,31 @@ let backgroundImage, spaceshipImage, bulletImage, enemyImage, gameOverImage;
 
 function loadImage(){
     backgroundImage=new Image();
-    backgroundImage.src="src/images/background.gif"
+    backgroundImage.src="src/images/background.gif";
+
+    spaceshipImage=new Image();
+    spaceshipImage.src="src/images/spaceship.png";
+
+    bulletImage=new Image();
+    bulletImage.src="src/images/bullet.png";
+
+    enemyImage=new Image();
+    enemyImage.src="src/images/enemy.png";
+
+    gameOverImage=new Image();
+    gameOverImage.src="src/images/gameover.png";
 }
+
+//2. render: UI를 그려주는 것
+function render(){
+    ctx.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height);
+}
+
+function main(){
+    render()
+    requestAnimationFrame(main)
+}
+
+loadImage();
+render();
+main();
