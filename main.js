@@ -13,6 +13,10 @@ document.body.appendChild(canvas);
 
 let backgroundImage, spaceshipImage, bulletImage, enemyImage, gameOverImage;
 
+//우주선 좌표 - 계속 움직이면 바뀌기 때문에 따로 빼 두는 것
+let spaceshipX = canvas.width/2 -32;
+let spaceshipY = canvas.height-64;
+
 function loadImage(){
     backgroundImage=new Image();
     backgroundImage.src="src/images/background.gif";
@@ -33,6 +37,7 @@ function loadImage(){
 //2. render: UI를 그려주는 것
 function render(){
     ctx.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height);
+    ctx.drawImage(spaceshipImage, spaceshipX, spaceshipY);
 }
 
 function main(){
