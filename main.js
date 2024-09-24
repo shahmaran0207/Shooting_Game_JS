@@ -53,8 +53,13 @@ function setupKeyboardListener(){
 }
 
 //39: 오른쪽 방향키
+//37: 왼쪽 방향키
 function update(){
     if(39 in keysDown) spaceshipX+=5;
+    if(37 in keysDown) spaceshipX-=5;
+
+    if(spaceshipX<=0) spaceshipX=0;
+    if(spaceshipX >= canvas.width-64) spaceshipX=canvas.width-64;
 }
 
 function main(){
