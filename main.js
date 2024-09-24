@@ -34,17 +34,35 @@ function loadImage(){
     gameOverImage.src="src/images/gameover.png";
 }
 
+let keysDown={}
+
 //2. render: UI를 그려주는 것
 function render(){
     ctx.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height);
     ctx.drawImage(spaceshipImage, spaceshipX, spaceshipY);
 }
 
+function setupKeyboardListener(){
+    document.addEventListener("keydown", function (event){
+        keysDown[event.keyCode]=true;
+    });
+
+    document.addEventListener("keyup", function (event){
+        delete keysDown[event.keyCode]
+    })
+}
+
+//39: 오른쪽 방향키
+function update(){
+    if(39 in keysDown) spaceshipX+=5;
+}
+
 function main(){
-    render()
-    requestAnimationFrame(main)
+    update();
+    render();
+    requestAnimationFrame(main);
 }
 
 loadImage();
-render();
+setupKeyboardListener();
 main();
