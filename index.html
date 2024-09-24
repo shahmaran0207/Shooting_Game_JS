@@ -2,11 +2,77 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>슈팅게임_JS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shooting Game</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: black; /* 우주 느낌의 어두운 배경 */
+            overflow: hidden; /* 스크롤바 방지 */
+        }
+
+        #gameContainer {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        canvas {
+            display: block;
+            border: 5px solid white;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+        }
+
+        /* 별의 애니메이션 */
+        .stars {
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: url('https://www.transparenttextures.com/patterns/stardust.png') repeat;
+            z-index: -1;
+            animation: starMove 20s linear infinite; /* 별들이 움직이도록 애니메이션 적용 */
+        }
+
+        @keyframes starMove {
+            from {
+                transform: translateY(0);
+            }
+            to {
+                transform: translateY(-100%);
+            }
+        }
+
+        /* 추가된 우주 배경 효과 */
+        .nebula {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(128, 0, 128, 0.2), rgba(0, 0, 0, 0.8));
+            z-index: -2;
+        }
+
+        /* 별의 반짝임 애니메이션 */
+        @keyframes twinkle {
+            0% {
+                opacity: 0.5;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+    </style>
 </head>
 <body>
-
-    <script src="main.js"></script>
-
+<div class="nebula"></div> <!-- 우주 안개 추가 -->
+<div class="stars"></div> <!-- 별 배경 -->
+<div id="gameContainer"></div>
+<script src="main.js"></script>
 </body>
 </html>
