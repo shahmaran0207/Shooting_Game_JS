@@ -1,0 +1,76 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: black;
+    overflow: hidden;
+}
+
+#gameContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+canvas {
+    display: block;
+    border: 5px solid white;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+}
+
+.stars {
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    background: url('https://www.transparenttextures.com/patterns/stardust.png') repeat;
+    z-index: -1;
+    animation: starMove 20s linear infinite;
+}
+
+@keyframes starMove {
+    from {
+        transform: translateY(0);
+    }
+    to {
+        transform: translateY(-100%);
+    }
+}
+
+.nebula {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(128, 0, 128, 0.2), rgba(0, 0, 0, 0.8));
+    z-index: -2;
+}
+
+@keyframes twinkle {
+    0% {
+        opacity: 0.5;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+#gameTitle {
+    position: absolute;
+    top: -70px;
+    font-size: 38px;
+    white-space: nowrap;
+    color: #fff;
+    text-shadow:
+            0 0 5px #f0f,
+            0 0 10px #f0f,
+            0 0 20px #f0f,
+            0 0 40px #f0f,
+            0 0 80px #f0f,
+            0 0 100px #f0f;
+    z-index: 1;
+}

@@ -17,6 +17,19 @@ let backgroundImage, spaceshipImage, bulletImage, enemyImage, gameOverImage;
 let spaceshipX = canvas.width / 2 - 32;
 let spaceshipY = canvas.height - 64;
 
+let bulletList=[]
+
+function Bullet(){
+    this.x=0;
+    this.y=0;
+    this.init=function (){
+        this.x=spaceshipX;
+        this.y=spaceshipY;
+
+        bulletList.push(this);
+    }
+}
+
 function loadImage() {
     backgroundImage = new Image();
     backgroundImage.src = "src/images/background.gif";
@@ -40,6 +53,8 @@ let keysDown = {};
 function render() {
     ctx.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height);
     ctx.drawImage(spaceshipImage, spaceshipX, spaceshipY);
+
+    
 }
 
 function setupKeyboardListener() {
@@ -49,7 +64,15 @@ function setupKeyboardListener() {
 
     document.addEventListener("keyup", function (event) {
         delete keysDown[event.keyCode];
+
+        //spacebar: 32
+        if(event.keyCode==32) createBullet();
     });
+}
+
+function createBullet(){
+    let b= new Bullet();
+    b.init();
 }
 
 // 39: Right arrow, 37: Left arrow
