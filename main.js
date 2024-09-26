@@ -12,6 +12,7 @@ canvas.height = 700;
 document.getElementById("gameContainer").appendChild(canvas);
 
 let backgroundImage, spaceshipImage, bulletImage, enemyImage, gameOverImage;
+let gameOver=false;
 
 // Spaceship coordinates
 let spaceshipX = canvas.width / 2 - 32;
@@ -53,6 +54,8 @@ function Enemy(){
 
     this.update=function (){
         this.y+=2;
+
+        if(this.y>=canvas.height-104) gameOver=true;
     }
 }
 
@@ -134,9 +137,12 @@ function update() {
 }
 
 function main() {
-    update();
-    render();
-    requestAnimationFrame(main);
+    if(!gameOver){
+        update();
+        render();
+        requestAnimationFrame(main);
+    }
+    else ctx.drawImage(gameOverImage, 80, 210, 256, 256);
 }
 
 loadImage();
