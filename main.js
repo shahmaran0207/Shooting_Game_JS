@@ -49,6 +49,10 @@ function Enemy(){
         this.y=0;
         this.x=generateRandomValue(0, canvas.width-48);
         enemyList.push(this);
+    };
+
+    this.update=function (){
+        this.y+=2;
     }
 }
 
@@ -122,6 +126,10 @@ function update() {
 
     for(let i=0; i<bulletList.length; i++){
         bulletList[i].update()
+    }
+
+    for(let i=0; i<enemyList.length; i++){
+        enemyList[i].update()
     }
 }
 
