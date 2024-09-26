@@ -23,7 +23,7 @@ function Bullet(){
     this.x=0;
     this.y=0;
     this.init=function (){
-        this.x=spaceshipX;
+        this.x=spaceshipX+20  ;
         this.y=spaceshipY;
 
         bulletList.push(this);
@@ -32,6 +32,24 @@ function Bullet(){
     this.update=function (){
         this.y-=7;
     };
+}
+
+function generateRandomValue(min, max){
+    let randomNum=Math.floor(Math.random()*(max-min+1))+min;
+    return randomNum;
+}
+
+let enemyList=[];
+
+function Enemy(){
+    this.x=0;
+    this.y=0;
+
+    this.init=function (){
+        this.y=0;
+        this.x=generateRandomValue(0, canvas.width-48);
+        enemyList.push(this);
+    }
 }
 
 function loadImage() {
@@ -61,6 +79,10 @@ function render() {
     for(let i=0; i<bulletList.length; i++){
         ctx.drawImage(bulletImage, bulletList[i].x, bulletList[i].y);
     }
+
+    for(let i=0; i<enemyList.length; i++){
+        ctx.drawImage(enemyImage, enemyList[i].x, enemyList[i].y);
+    }
 }
 
 function setupKeyboardListener() {
@@ -79,6 +101,14 @@ function setupKeyboardListener() {
 function createBullet(){
     let b= new Bullet();
     b.init();
+}
+
+function createEnemy(){
+    const interval=setInterval(function (){
+        let e=new Enemy();
+        e.init();
+
+    }, 1000);
 }
 
 // 39: Right arrow, 37: Left arrow
@@ -103,4 +133,5 @@ function main() {
 
 loadImage();
 setupKeyboardListener();
+createEnemy();
 main();
