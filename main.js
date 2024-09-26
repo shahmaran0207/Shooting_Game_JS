@@ -27,7 +27,11 @@ function Bullet(){
         this.y=spaceshipY;
 
         bulletList.push(this);
-    }
+    };
+
+    this.update=function (){
+        this.y-=7;
+    };
 }
 
 function loadImage() {
@@ -54,7 +58,9 @@ function render() {
     ctx.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height);
     ctx.drawImage(spaceshipImage, spaceshipX, spaceshipY);
 
-    
+    for(let i=0; i<bulletList.length; i++){
+        ctx.drawImage(bulletImage, bulletList[i].x, bulletList[i].y);
+    }
 }
 
 function setupKeyboardListener() {
@@ -83,6 +89,10 @@ function update() {
     // Keep spaceship within bounds
     if (spaceshipX <= 0) spaceshipX = 0;
     if (spaceshipX >= canvas.width - 64) spaceshipX = canvas.width - 64;
+
+    for(let i=0; i<bulletList.length; i++){
+        bulletList[i].update()
+    }
 }
 
 function main() {
